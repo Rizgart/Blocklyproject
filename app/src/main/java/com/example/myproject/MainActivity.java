@@ -55,12 +55,10 @@ public class MainActivity extends AbstractBlocklyActivity {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-
                 read = String.valueOf(in.readLine());
 
                 Toast.makeText(getApplicationContext(), String.valueOf(read), Toast.LENGTH_LONG).show();
                 System.out.print(read);
-                //  socket.close();
             }
             catch(Exception e){
                 e.printStackTrace();

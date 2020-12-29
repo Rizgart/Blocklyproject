@@ -1,15 +1,6 @@
 <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
   <category name="Camera" colour="#5ba5a5">
-    <block type="movement_robot">
-      <field name="time">1</field>
-      <field name="lin_angle">90</field>
-      <field name="lin_speed">5</field>
-    </block>
-    <block type="movement_speed">
-      <field name="lin_speed">5</field>
-      <field name="lin_angle">90</field>
-    </block>
-    <block type="movement_stop"></block>
+    <block type="logic_boolean"/>
   </category>
   <category name="Google Cloud Type" colour="#a55b93">
     <block type="rotation_strafe">
