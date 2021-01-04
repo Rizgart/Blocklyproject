@@ -1,6 +1,8 @@
 package com.example.myproject;
 
+import android.os.Handler;
 import android.os.Looper;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.google.blockly.android.AbstractBlocklyActivity;
@@ -18,11 +20,8 @@ public class MainActivity extends AbstractBlocklyActivity {
 
     private static final String TAG = "MainActivity";
 
-    private static final String SAVE_FILENAME = "simple_workspace.xml";
-    private static final String AUTOSAVE_FILENAME = "simple_workspace_temp.xml";
-
-    String read = "Status code = 1";
-
+    private static final String SAVE_FILENAME = "main_workspace.xml";
+    private static final String AUTOSAVE_FILENAME = "main_workspace_temp.xml";
 
     // Add custom blocks to this list.
     static final List<String> BLOCK_DEFINITIONS = Arrays.asList(
@@ -36,11 +35,23 @@ public class MainActivity extends AbstractBlocklyActivity {
     private static final List<String> JAVASCRIPT_GENERATORS = Arrays.asList(
             // Custom block generators go here. Default blocks are already included.
             "blocks/code_generator.js"
-
     );
 
+    private TextView mGeneratedTextView;
+    private Handler mHandler;
     CodeGenerationRequest.CodeGeneratorCallback mCodeGeneratorCallback =
-            new LoggingCodeGeneratorCallback(this, TAG);
+            new CodeGenerationRequest.CodeGeneratorCallback() {
+                @Override
+                public void onFinishCodeGeneration(final String generatedCode) {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mGeneratedTextView.setText(generatedCode);
+                            DemoUtil.updateTextMinWidth(mGeneratedTextView, MainActivity.this);
+                        }
+                    });
+                }
+            };
 
 
     @NonNull
@@ -76,7 +87,6 @@ public class MainActivity extends AbstractBlocklyActivity {
     @Override
     @NonNull
     protected String getWorkspaceSavePath() {
-
         return SAVE_FILENAME;
     }
 
