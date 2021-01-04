@@ -16,9 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AbstractBlocklyActivity {
 
-    private static final String TAG = "SimpleActivity";
-
-    private Socket socket;
+    private static final String TAG = "MainActivity";
 
     private static final String SAVE_FILENAME = "simple_workspace.xml";
     private static final String AUTOSAVE_FILENAME = "simple_workspace_temp.xml";
@@ -27,13 +25,16 @@ public class MainActivity extends AbstractBlocklyActivity {
 
 
     // Add custom blocks to this list.
-    private static final List<String> BLOCK_DEFINITIONS = Arrays.asList(
+    static final List<String> BLOCK_DEFINITIONS = Arrays.asList(
+            DefaultBlocks.COLOR_BLOCKS_PATH,
             DefaultBlocks.LOGIC_BLOCKS_PATH,
-            "blocks/block_definition.json"
+            DefaultBlocks.LOOP_BLOCKS_PATH,
+            DefaultBlocks.MATH_BLOCKS_PATH,
+            DefaultBlocks.TEXT_BLOCKS_PATH,
+            DefaultBlocks.VARIABLE_BLOCKS_PATH
     );
     private static final List<String> JAVASCRIPT_GENERATORS = Arrays.asList(
             // Custom block generators go here. Default blocks are already included.
-
             "blocks/code_generator.js"
 
     );
@@ -42,26 +43,6 @@ public class MainActivity extends AbstractBlocklyActivity {
             new LoggingCodeGeneratorCallback(this, TAG);
 
 
-    class ReceiveThread implements Runnable{
-
-
-        public void run() {
-            try{
-
-                Looper.prepare();
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-                read = String.valueOf(in.readLine());
-
-                Toast.makeText(getApplicationContext(), String.valueOf(read), Toast.LENGTH_LONG).show();
-                System.out.print(read);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
     @NonNull
     @Override
     protected List<String> getBlockDefinitionsJsonPaths() {
@@ -71,7 +52,6 @@ public class MainActivity extends AbstractBlocklyActivity {
     @NonNull
     @Override
     protected String getToolboxContentsXmlPath() {
-
         return "blocks/toolbox.xml";
     }
 
