@@ -59,6 +59,7 @@ public class MainActivity extends AbstractBlocklyActivity {
     protected String getToolboxContentsXmlPath() {
         return "blocks/toolbox.xml";
         //return DefaultBlocks.TOOLBOX_PATH;
+        //return "blocks/custom_generator.js";
     }
 
     @NonNull

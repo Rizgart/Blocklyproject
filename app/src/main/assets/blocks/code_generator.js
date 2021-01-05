@@ -1,5 +1,5 @@
 
-Blockly.JavaScript['variables_get'] = function(block) {
+Blockly.JavaScript['Camera'] = function(block) {
 
 feather.replace();
 

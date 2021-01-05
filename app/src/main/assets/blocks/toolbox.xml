@@ -293,7 +293,6 @@
     <!-- <category name="Functions" colour="290" custom="PROCEDURE" /> -->
     <category name="Variables" colour="330" custom="VARIABLE" />
     <category name="Camera" colour="20">
-        <block type="logic_boolean"></block>
         <block type="controls_if"></block>
     </category>
 </toolbox>
