@@ -24,14 +24,8 @@ public class MainActivity extends AbstractBlocklyActivity {
     private static final String AUTOSAVE_FILENAME = "main_workspace_temp.xml";
 
     // Add custom blocks to this list.
-    static final List<String> BLOCK_DEFINITIONS = Arrays.asList(
-            DefaultBlocks.COLOR_BLOCKS_PATH,
-            DefaultBlocks.LOGIC_BLOCKS_PATH,
-            DefaultBlocks.LOOP_BLOCKS_PATH,
-            DefaultBlocks.MATH_BLOCKS_PATH,
-            DefaultBlocks.TEXT_BLOCKS_PATH,
-            DefaultBlocks.VARIABLE_BLOCKS_PATH
-    );
+    static final List<String> BLOCK_DEFINITIONS = DefaultBlocks.getAllBlockDefinitions();
+
     private static final List<String> JAVASCRIPT_GENERATORS = Arrays.asList(
             // Custom block generators go here. Default blocks are already included.
             "blocks/code_generator.js"
@@ -64,6 +58,7 @@ public class MainActivity extends AbstractBlocklyActivity {
     @Override
     protected String getToolboxContentsXmlPath() {
         return "blocks/toolbox.xml";
+        //return DefaultBlocks.TOOLBOX_PATH;
     }
 
     @NonNull
