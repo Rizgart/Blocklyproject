@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyProject</string>
+    <string name="split_generate_message">Run the blocks to see them in code!</string>
+
 </resources>

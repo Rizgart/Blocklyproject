@@ -1,7 +1,9 @@
 package com.example.myproject;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -33,6 +35,9 @@ public class MainActivity extends AbstractBlocklyActivity {
 
     private TextView mGeneratedTextView;
     private Handler mHandler;
+
+    private String mNoCodeText;
+
     CodeGenerationRequest.CodeGeneratorCallback mCodeGeneratorCallback =
             new CodeGenerationRequest.CodeGeneratorCallback() {
                 @Override
@@ -46,6 +51,29 @@ public class MainActivity extends AbstractBlocklyActivity {
                     });
                 }
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mHandler = new Handler();
+    }
+
+    @Override
+    protected View onCreateContentView(int parentId) {
+        View root = getLayoutInflater().inflate(R.layout.split_content, null);
+        mGeneratedTextView = (TextView) root.findViewById(R.id.generated_code);
+        DemoUtil.updateTextMinWidth(mGeneratedTextView, this);
+
+        mNoCodeText = mGeneratedTextView.getText().toString(); // Capture initial value.
+
+        return root;
+    }
+
+    @Override
+    protected int getActionBarMenuResId() {
+        return R.menu.split_actionbar;
+    }
 
 
     @NonNull
